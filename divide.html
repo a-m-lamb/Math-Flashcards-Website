@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block 'content' %}
+
+<button type="button" button onclick="location.reload()" class="btn btn-success" >New Question</button>
+
+<center>
+<h1> {{num_1}} / {{num_2}} </h1>   
+
+{% if my_answer %}
+
+
+
+<br>
+
+<div class="alert alert-{{color}}" role="alert">
+  <h4 class="alert-heading">{{result}}</h4>
+  <p>{{my_answer}}
+</p>
+  <hr>
+  <p class="mb-0">{{motivation}}</p>
+</div>
+
+{% endfor %}
+{% endif %}
+
+
+
+
+<form action = "divide.html" method="POST">
+<!-- this code pretty much just makes sure whatever is sent right back to this page
+ -->
+	{% csrf_token %}
+  <div class="form-group">
+    <label for="exampleInputEmail1"></label>
+    <input type="text" class="form-control" placeholder="Type your solution here" name = "answer">
+    <input type="hidden"  name = "old_num_1" value ="{{num_1}}">
+    <input type="hidden"  name = "old_num_2" value="{{num_2}}">
+<!-- 
+    "answer" makes it so the submission is sent straight to the back end for refference  -->
+  </div>
+  
+  <button type="submit" class="btn btn-secondary">Submit</button>
+</form>
+</center>
+
+
+{% endblock %}
